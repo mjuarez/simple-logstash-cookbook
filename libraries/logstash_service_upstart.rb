@@ -35,7 +35,7 @@ module SimpleLogstashCookbook
 
       # DRY: generate service resource for the further reuse
       def service_resource
-        find_resource(:file, "/etc/init/#{new_resource.instance_name}") do
+        find_resource(:file, "/etc/init/#{new_resource.instance_name}.conf") do
           content(
             """
             description     \"Logstash service\"
