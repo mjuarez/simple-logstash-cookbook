@@ -64,8 +64,6 @@ module SimpleLogstashCookbook
               exec #{new_resource.daemon_path} #{new_resource.logstash_args}
             end script
             """)
-
-          action :nothing
         end
       end
 
