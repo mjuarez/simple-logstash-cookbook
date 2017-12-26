@@ -38,7 +38,7 @@ module SimpleLogstashCookbook
         find_resource(:file, "/etc/init/#{new_resource.instance_name}") do
           content(
             """
-            description     "Logstash service"
+            description     \"Logstash service\"
             start on filesystem or runlevel [2345]
             stop on runlevel [!2345]
 
