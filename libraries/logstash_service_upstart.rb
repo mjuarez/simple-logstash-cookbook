@@ -65,8 +65,6 @@ module SimpleLogstashCookbook
             end script
             """)
 
-          triggers_reload true
-
           action :nothing
         end
       end
