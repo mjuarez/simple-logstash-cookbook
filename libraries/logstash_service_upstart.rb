@@ -34,7 +34,7 @@ module SimpleLogstashCookbook
       end
 
       # DRY: generate service resource for the further reuse
-      def service_resource
+      def serviceconf_resource
         find_resource(:file, "/etc/init/#{new_resource.instance_name}.conf") do
           content(
             """
@@ -68,18 +68,27 @@ module SimpleLogstashCookbook
           action :nothing
         end
       end
+
+      def service_resource
+        find_resource(:service, new_resource.instance_name) do
+          action :nothing
+        end
+      end
     end
 
     action :start do
-      service_resource.action += [:create]
+      serviceconf_resource.notifies :restart, service_resource, :delayed
+      env_file.notifies :restart, service_resource, :delayed
+      service_resource.action += [:create, :enable, :start]
+      service_resource.notifies :restart, service_resource, :delayed
     end
 
     action :stop do
-      service_resource.action += [:delete]
+      service_resource.action += [:stop, :disable]
     end
 
     action :restart do
-      service_resource.action += [:create]
+      service_resource.action += [:create, :enable, :restart]
     end
   end
 end
