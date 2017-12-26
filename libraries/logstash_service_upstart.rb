@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module SimpleLogstashCookbook
-  class LogstashServiceSystemd < LogstashServiceBase
-    resource_name :logstash_service_systemd
+  class LogstashServiceUpstart < LogstashServiceBase
+    resource_name :logstash_service_upstart
 
     provides :logstash_service, platform: 'debian' do |node| # ~FC005
       node['platform_version'].to_f >= 8.0
