@@ -5,15 +5,15 @@ module SimpleLogstashCookbook
     resource_name :logstash_service_upstart
 
     provides :logstash_service, platform: 'debian' do |node| # ~FC005
-      node['platform_version'].to_f >= 8.0
+      node['platform_version'].to_f <= 7.0
     end
 
     provides :logstash_service, platform: 'ubuntu' do |node|
-      node['platform_version'].to_f >= 15.04
+      node['platform_version'].to_f <= 14.04
     end
 
     provides :logstash_service, platform: %w[redhat centos scientific oracle] do |node|
-      node['platform_version'].to_f >= 7.0
+      node['platform_version'].to_f <= 6.0
     end
 
     provides :logstash_service, platform: 'fedora'
