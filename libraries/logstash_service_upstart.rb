@@ -71,7 +71,6 @@ module SimpleLogstashCookbook
     end
 
     action :start do
-      env_file.notifies :restart, service_resource, :delayed
       service_resource.action += [:create]
     end
 
